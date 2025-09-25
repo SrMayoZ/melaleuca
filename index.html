@@ -52,6 +52,12 @@
         justify-content: center;
         color: white;
     }
+    details > summary {
+      list-style: none;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -252,12 +258,60 @@
         </div>
       </section>
 
+      <!-- Sección 6: Manejo de Objeciones -->
+      <section id="objeciones" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">6. Manejo de Objeciones como un Profesional</h2>
+            <p class="mt-2 text-gray-600">Transforma las dudas en confianza. Escucha, valida y responde con seguridad usando estas claves.</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-4">
+          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer">
+            <summary class="flex justify-between items-center font-semibold text-gray-800">
+              "Es que es muy caro..."
+              <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </summary>
+            <div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200">
+              <p><strong class="text-gray-700 block">Paso 1: Valida su sentir.</strong> "Te entiendo perfectamente, yo también pensé eso al principio."</p>
+              <p><strong class="text-gray-700 block">Paso 2: Re-enfoca en el valor.</strong> "Lo que descubrí es que, como son súper concentrados, el costo por uso es mucho más bajo que los del súper. Pagamos por el producto, no por el agua y el plástico."</p>
+              <p><strong class="text-gray-700 block">Paso 3: Ofrece una solución.</strong> "¿Qué te parece si comparamos lo que gastas ahora en un producto como el limpiador multiusos? Te sorprenderá el ahorro. Además, estás invirtiendo en la salud de tu hogar."</p>
+            </div>
+          </details>
+          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer">
+            <summary class="flex justify-between items-center font-semibold text-gray-800">
+              "¿Esto es una de esas pirámides?"
+              <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </summary>
+            <div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200">
+              <p><strong class="text-gray-700 block">Paso 1: Agradece la pregunta.</strong> "¡Qué buena pregunta! Es súper importante aclarar eso y te agradezco la confianza para hacerlo."</p>
+              <p><strong class="text-gray-700 block">Paso 2: Explica el modelo simple.</strong> "Para nada. Melaleuca es un club de compras en línea, como si fuera un Amazon o un Costco pero de bienestar. Compras directamente a la fábrica productos exclusivos y más seguros."</p>
+              <p><strong class="text-gray-700 block">Paso 3: Clarifica la compensación.</strong> "La parte del negocio es opcional y funciona por referidos. Si te encantan los productos y los recomiendas, la compañía te paga una comisión. Igual que cuando recomiendas una serie o un restaurante, pero aquí sí te pagan. No hay obligación de vender ni reclutar para ser cliente."</p>
+            </div>
+          </details>
+          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer">
+              <summary class="flex justify-between items-center font-semibold text-gray-800">
+                "No tengo tiempo para esto."
+                <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </summary>
+              <div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200">
+                  <p><strong class="text-gray-700 block">Paso 1: Empatiza con su realidad.</strong> "La vida es una locura, ¿verdad? Sé exactamente a lo que te refieres, el tiempo es lo que más nos falta a todos."</p>
+                  <p><strong class="text-gray-700 block">Paso 2: Presenta la flexibilidad.</strong> "Justamente por eso me encantó este modelo. No hay horarios fijos ni jefes. Simplemente cambias de tienda para tus compras habituales y compartes tu experiencia cuando surge la conversación, desde tu celular."</p>
+                  <p><strong class="text-gray-700 block">Paso 3: Habla del objetivo.</strong> "Mucha gente empieza precisamente porque no tiene tiempo y busca una forma de generar un ingreso extra que a la larga les pueda comprar más tiempo y libertad. Con 2-3 horas a la semana, bien enfocadas, se pueden construir cosas increíbles."</p>
+              </div>
+            </details>
+        </div>
+      </section>
+
     </main>
 
     <!-- Pie de Página -->
     <footer class="mt-16 pt-8 text-center text-gray-500 text-sm border-t border-gray-200">
       <p>&copy; 2025 – Guía Definitiva de Éxito Melaleuca.</p>
-      <p class="mt-1">HL 2025</p>
+      <p class="mt-1">Creada con IA para potenciar tu crecimiento y estrategia.</p>
     </footer>
   </div>
 
@@ -291,3 +345,4 @@
 
 </body>
 </html>
+
