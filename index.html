@@ -58,6 +58,17 @@
     details > summary::-webkit-details-marker {
       display: none;
     }
+    .progress-bar-bg {
+        background-color: #e5e7eb;
+    }
+    .progress-bar-fill {
+        background-color: var(--primary);
+        transition: width 0.5s ease-in-out;
+    }
+    .checklist-item:has(input:checked) label {
+        text-decoration: line-through;
+        color: #9ca3af;
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -79,6 +90,30 @@
 
     <!-- Contenido Principal -->
     <main class="space-y-10 md:space-y-16">
+    
+      <!-- Módulo 0: Arranque Rápido -->
+      <section id="arranque" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 11.08-2.77 2.77a.55.55 0 0 1-.78 0l-2.77-2.77a.55.55 0 0 1 0-.78l2.77-2.77a.55.55 0 0 1 .78 0l2.77 2.77a.55.55 0 0 1 0 .78z"></path><path d="m11.08 22-2.77-2.77a.55.55 0 0 1 0-.78l2.77-2.77a.55.55 0 0 1 .78 0l2.77 2.77a.55.55 0 0 1 0 .78l-2.77 2.77a.55.55 0 0 1-.78 0z"></path><path d="m12 12 4.14 4.14a2 2 0 0 0 2.83-2.83L14.83 9.17"></path><path d="M5.86 5.86a2 2 0 0 0-2.83 2.83L7.17 12.83"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">0. Arranque Rápido: Tus Primeras 72 Horas</h2>
+            <p class="mt-2 text-gray-600">El impulso inicial es clave. Completa esta lista para empezar con el pie derecho y combatir la parálisis.</p>
+          </div>
+        </div>
+        <div class="mt-6">
+            <div id="checklist" class="space-y-3">
+                <div class="checklist-item flex items-center gap-3 bg-gray-50 p-3 rounded-lg"><input id="task1" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary"><label for="task1" class="text-gray-700">Realizar mi primer pedido y familiarizarme con la tienda.</label></div>
+                <div class="checklist-item flex items-center gap-3 bg-gray-50 p-3 rounded-lg"><input id="task2" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary"><label for="task2" class="text-gray-700">Identificar y anotar 10 contactos clave (amigos/familiares).</label></div>
+                <div class="checklist-item flex items-center gap-3 bg-gray-50 p-3 rounded-lg"><input id="task3" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary"><label for="task3" class="text-gray-700">Publicar mi primera historia (usando un script de la sección 4).</label></div>
+                <div class="checklist-item flex items-center gap-3 bg-gray-50 p-3 rounded-lg"><input id="task4" type="checkbox" class="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary"><label for="task4" class="text-gray-700">Agendar mi primera llamada de estrategia con mi mentor.</label></div>
+            </div>
+            <div class="mt-4">
+                <div class="progress-bar-bg w-full rounded-full h-2.5"><div id="progressBar" class="progress-bar-fill h-2.5 rounded-full" style="width: 0%"></div></div>
+            </div>
+        </div>
+      </section>
 
       <!-- Sección 1: La Filosofía -->
       <section id="filosofia" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
@@ -92,22 +127,13 @@
           </div>
         </div>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-gray-50 p-5 rounded-xl">
-                <h3 class="font-bold text-lg text-gray-800 mb-2">Enfócate en Beneficios</h3>
-                <p class="text-gray-600">Nadie compra un producto, compra una transformación. Habla de mañanas con más energía, de la tranquilidad de un hogar sin tóxicos, de una piel radiante.</p>
-            </div>
-            <div class="bg-gray-50 p-5 rounded-xl">
-                <h3 class="font-bold text-lg text-gray-800 mb-2">La Regla 80/20</h3>
-                <p class="text-gray-600">80% de tu contenido debe educar, inspirar y entretener. El 20% restante puede ser una invitación sutil a conocer más sobre tus soluciones.</p>
-            </div>
-            <div class="bg-gray-50 p-5 rounded-xl">
-                <h3 class="font-bold text-lg text-gray-800 mb-2">Autenticidad Radical</h3>
-                <p class="text-gray-600">La gente confía en personas, no en logos. Comparte tus experiencias reales, tus dudas y tus éxitos. La perfección no conecta, la humanidad sí.</p>
-            </div>
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-bold text-lg text-gray-800 mb-2">Enfócate en Beneficios</h3><p class="text-gray-600">Nadie compra un producto, compra una transformación. Habla de mañanas con más energía, de la tranquilidad de un hogar sin tóxicos, de una piel radiante.</p></div>
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-bold text-lg text-gray-800 mb-2">La Regla 80/20</h3><p class="text-gray-600">80% de tu contenido debe educar, inspirar y entretener. El 20% restante puede ser una invitación sutil a conocer más sobre tus soluciones.</p></div>
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-bold text-lg text-gray-800 mb-2">Autenticidad Radical</h3><p class="text-gray-600">La gente confía en personas, no en logos. Comparte tus experiencias reales, tus dudas y tus éxitos. La perfección no conecta, la humanidad sí.</p></div>
         </div>
       </section>
 
-      <!-- Sección 2: El Respaldo Científico -->
+      <!-- Sección 2: El Respaldo Científico (PROFUNDIZADO) -->
       <section id="ciencia" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
         <div class="flex items-start gap-4">
           <div class="section-icon">
@@ -115,35 +141,17 @@
           </div>
           <div>
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800">2. El Respaldo: Naturaleza y Ciencia</h2>
-            <p class="mt-2 text-gray-600">No necesitas un doctorado. Domina estos tres pilares para comunicar con confianza y credibilidad.</p>
+            <p class="mt-2 text-gray-600">Domina los pilares de cada línea de producto para comunicar con confianza y credibilidad.</p>
           </div>
         </div>
         <div class="mt-6 space-y-4">
-            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                <div class="step-indicator">1</div>
-                <div>
-                    <h4 class="font-semibold text-gray-800">Aceite de Melaleuca T36-C5®</h4>
-                    <p class="text-gray-600">Es el corazón de la marca. Un antiséptico y solvente natural con más de 95 años de uso documentado. Es el "ingrediente secreto" que garantiza la eficacia y la seguridad.</p>
-                </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                <div class="step-indicator">2</div>
-                <div>
-                    <h4 class="font-semibold text-gray-800">Fórmulas Súper Concentradas</h4>
-                    <p class="text-gray-600">Menos agua, menos plástico, menos contaminación. Esto no es solo un beneficio ecológico, es un ahorro inteligente para el bolsillo del cliente. ¡Comunícalo!</p>
-                </div>
-            </div>
-            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
-                <div class="step-indicator">3</div>
-                <div>
-                    <h4 class="font-semibold text-gray-800">Libre de Químicos Nocivos</h4>
-                    <p class="text-gray-600">El compromiso es claro: eliminar ingredientes como cloro, amoníaco y formaldehído. Promueve un santuario seguro en cada hogar, protegiendo a familias y mascotas.</p>
-                </div>
-            </div>
+            <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer"><summary class="flex justify-between items-center font-semibold text-gray-800">Línea de Limpieza EcoSense®<svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200"><p><strong>Ingredientes Clave:</strong> Ácido Cítrico, Enzimas Naturales, Aceite de Tomillo.</p><p><strong>Punto de Dolor que Resuelve:</strong> Elimina la necesidad de usar guantes y ventilar la casa al limpiar. Seguridad total para niños y mascotas.</p><div class="overflow-x-auto"><table class="w-full text-sm text-left"><thead><tr class="border-b"><th class="px-2 py-2">Característica</th><th class="px-2 py-2">EcoSense</th><th class="px-2 py-2">Marca Genérica</th></tr></thead><tbody><tr class="border-b"><td>Costo por uso</td><td class="px-2 py-2 text-green-600">Bajo</td><td class="px-2 py-2 text-red-600">Alto</td></tr><tr><td>Ingredientes</td><td class="px-2 py-2">Derivados de plantas</td><td class="px-2 py-2">Químicos agresivos</td></tr></tbody></table></div></div></details>
+            <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer"><summary class="flex justify-between items-center font-semibold text-gray-800">Línea de Nutrición Peak Performance®<svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200"><p><strong>Ingredientes Clave:</strong> Oligo® (absorción mineral), Vitaminas de alta potencia, Antioxidantes.</p><p><strong>Punto de Dolor que Resuelve:</strong> Combate la fatiga y la falta de energía. Apoya la salud a largo plazo con nutrientes que el cuerpo realmente puede absorber.</p><div class="overflow-x-auto"><table class="w-full text-sm text-left"><thead><tr class="border-b"><th class="px-2 py-2">Característica</th><th class="px-2 py-2">Peak Performance</th><th class="px-2 py-2">Multivitamínico Común</th></tr></thead><tbody><tr class="border-b"><td>Absorción</td><td class="px-2 py-2 text-green-600">Hasta 10x mayor</td><td class="px-2 py-2 text-red-600">Baja y compite con radicales libres</td></tr><tr><td>Estudios</td><td class="px-2 py-2">Respaldado por 4 estudios clínicos</td><td class="px-2 py-2">Generalmente sin estudios específicos</td></tr></tbody></table></div></div></details>
+            <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer"><summary class="flex justify-between items-center font-semibold text-gray-800">Línea de Cuidado Personal<svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200"><p><strong>Ingredientes Clave:</strong> Aceite de Melaleuca T36-C5®, Glicerina, Manteca de Karité.</p><p><strong>Punto de Dolor que Resuelve:</strong> Soluciones para piel sensible, seca o irritada sin químicos agresivos. Cuidado de lujo a un precio accesible.</p><div class="overflow-x-auto"><table class="w-full text-sm text-left"><thead><tr class="border-b"><th class="px-2 py-2">Característica</th><th class="px-2 py-2">Cuidado Personal Melaleuca</th><th class="px-2 py-2">Marca de Farmacia</th></tr></thead><tbody><tr class="border-b"><td>Enfoque</td><td class="px-2 py-2 text-green-600">Salud y nutrición de la piel</td><td class="px-2 py-2">A menudo solo cosmético/superficial</td></tr><tr><td>Ingredientes Nocivos</td><td class="px-2 py-2">Libre de parabenos y ftalatos</td><td class="px-2 py-2">Puede contenerlos</td></tr></tbody></table></div></div></details>
         </div>
       </section>
 
-      <!-- Sección 3: Plan de Acción en Redes Sociales -->
+      <!-- Sección 3: Plan de Acción en Redes Sociales (PROFUNDIZADO) -->
       <section id="redes" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
         <div class="flex items-start gap-4">
           <div class="section-icon">
@@ -155,31 +163,29 @@
           </div>
         </div>
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 1: Perfil Magnético</h3>
-            <p class="text-gray-700">Tu biografía debe responder tres preguntas: ¿Quién eres? ¿A quién ayudas? ¿Cómo lo haces? Usa un lenguaje claro y añade un llamado a la acción (ej: "DM para una asesoría de hogar saludable").</p>
-          </div>
-          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 2: Contenido Que Atrae</h3>
-            <p class="text-gray-700">Crea Reels mostrando transformaciones ("antes y después"), tutoriales rápidos ("cómo diluir Sol-U-Mel"), y comparte tu rutina diaria integrando los productos de forma natural.</p>
-          </div>
-          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 3: Calendario de Contenido</h3>
-            <ul class="list-disc ml-5 space-y-1 text-gray-700">
-              <li><strong>Lunes de Mitos:</strong> Desmiente un mito sobre limpieza o bienestar.</li>
-              <li><strong>Miércoles de Tutorial:</strong> Enseña a usar un producto de forma creativa.</li>
-              <li><strong>Viernes de Testimonio:</strong> Comparte tu historia o la de un cliente (con permiso).</li>
-            </ul>
-          </div>
-          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
-            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 4: El Arte de la Conversación</h3>
-            <p class="text-gray-700">El DM es para construir relaciones. Responde a historias, haz preguntas genuinas y escucha. La venta ocurre cuando la confianza ya está establecida.</p>
-          </div>
+            <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200"><h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 1: Perfil Magnético</h3><p class="text-gray-700">Tu biografía debe responder tres preguntas: ¿Quién eres? ¿A quién ayudas? ¿Cómo lo haces? Usa un lenguaje claro y añade un llamado a la acción (ej: "DM para una asesoría de hogar saludable").</p></div>
+            <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200"><h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 2: Contenido Que Atrae</h3><p class="text-gray-700">Crea Reels mostrando transformaciones ("antes y después"), tutoriales rápidos ("cómo diluir Sol-U-Mel"), y comparte tu rutina diaria integrando los productos de forma natural.</p></div>
+            <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200"><h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 3: Calendario de Contenido</h3><ul class="list-disc ml-5 space-y-1 text-gray-700"><li><strong>Lunes de Mitos:</strong> Desmiente un mito sobre limpieza o bienestar.</li><li><strong>Miércoles de Tutorial:</strong> Enseña a usar un producto de forma creativa.</li><li><strong>Viernes de Testimonio:</strong> Comparte tu historia o la de un cliente (con permiso).</li></ul></div>
+            <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200"><h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 4: El Arte de la Conversación</h3><p class="text-gray-700">El DM es para construir relaciones. Responde a historias, haz preguntas genuinas y escucha. La venta ocurre cuando la confianza ya está establecida.</p></div>
+        </div>
+        <div class="mt-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Ejemplos Visuales de Contenido</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div class="bg-white rounded-xl p-3 border card-shadow max-w-sm mx-auto w-full">
+                    <div class="flex items-center mb-2"><img src="https://placehold.co/40x40/006d77/FFFFFF?text=Tú" class="rounded-full mr-2"><span class="font-bold text-sm">tu_usuario</span></div>
+                    <img src="https://placehold.co/400x400/83c5be/FFFFFF?text=Miércoles+de+Tutorial" alt="Ejemplo de post" class="rounded-md w-full">
+                    <div class="p-2 text-sm"><p><span class="font-bold">tu_usuario</span> ¿Sabías que Sol-U-Guard no solo limpia, sino que desinfecta con botánicos? 🌿 ¡Adiós químicos! #HogarSaludable #Melaleuca</p></div>
+                </div>
+                <div class="bg-black rounded-3xl p-2 border-4 border-gray-800 max-w-[200px] mx-auto w-full aspect-[9/16] flex flex-col justify-end" style="background: url('https://placehold.co/200x355/e9c46a/1f2937?text=Lunes+de+Mitos') no-repeat center center; background-size: cover;">
+                    <div class="text-white p-2 bg-black bg-opacity-50 rounded-lg text-center"><p class="font-bold text-xs">Mito: "Natural no es efectivo."</p><p class="text-xs">Realidad: ¡La ciencia botánica es poderosa! 💪</p></div>
+                </div>
+            </div>
         </div>
       </section>
 
       <!-- Sección 4: Scripts y Mensajes -->
       <section id="scripts" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <!-- ... (Contenido existente sin cambios) ... -->
         <div class="flex items-start gap-4">
           <div class="section-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
@@ -190,39 +196,15 @@
           </div>
         </div>
         <div class="mt-6 space-y-6">
-          
-          <div class="bg-gray-100 p-5 rounded-xl">
-            <p class="font-semibold text-gray-800 mb-2">Para responder a quien reacciona a una historia:</p>
-            <p class="text-gray-700 italic">"¡Hola [Nombre]! Qué bueno que te interesó mi historia. La verdad es que estoy feliz desde que saqué los limpiadores tóxicos de casa. Si te da curiosidad saber más, ¡me encantaría contarte sin ningún compromiso! 😊"</p>
-            <button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span class="copy-text">Copiar</span>
-            </button>
-          </div>
-
-          <div class="bg-gray-100 p-5 rounded-xl">
-            <p class="font-semibold text-gray-800 mb-2">Para una publicación en redes sociales:</p>
-            <p class="text-gray-700 italic">"Mi momento favorito del día: cuando la casa huele a limpio, no a químicos. Pequeños cambios, gran impacto en el bienestar de mi familia. ✨ #HogarConsciente #BienestarReal #Melaleuca"</p>
-            <button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span class="copy-text">Copiar</span>
-            </button>
-          </div>
-
-          <div class="bg-gray-100 p-5 rounded-xl">
-            <p class="font-semibold text-gray-800 mb-2">Para contactar a un amigo de forma casual:</p>
-            <p class="text-gray-700 italic">"Oye [Nombre], me acordé de ti el otro día. Empecé a usar unos productos ecológicos para la casa que son una maravilla (y súper ahorradores). Como sé que te interesan estos temas, pensé que te gustaría conocerlos. ¡Avísame si quieres que te cuente!"</p>
-            <button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-              <span class="copy-text">Copiar</span>
-            </button>
-          </div>
-
+          <div class="bg-gray-100 p-5 rounded-xl"><p class="font-semibold text-gray-800 mb-2">Para responder a quien reacciona a una historia:</p><p class="text-gray-700 italic">"¡Hola [Nombre]! Qué bueno que te interesó mi historia. La verdad es que estoy feliz desde que saqué los limpiadores tóxicos de casa. Si te da curiosidad saber más, ¡me encantaría contarte sin ningún compromiso! 😊"</p><button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-text">Copiar</span></button></div>
+          <div class="bg-gray-100 p-5 rounded-xl"><p class="font-semibold text-gray-800 mb-2">Para una publicación en redes sociales:</p><p class="text-gray-700 italic">"Mi momento favorito del día: cuando la casa huele a limpio, no a químicos. Pequeños cambios, gran impacto en el bienestar de mi familia. ✨ #HogarConsciente #BienestarReal #Melaleuca"</p><button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-text">Copiar</span></button></div>
+          <div class="bg-gray-100 p-5 rounded-xl"><p class="font-semibold text-gray-800 mb-2">Para contactar a un amigo de forma casual:</p><p class="text-gray-700 italic">"Oye [Nombre], me acordé de ti el otro día. Empecé a usar unos productos ecológicos para la casa que son una maravilla (y súper ahorradores). Como sé que te interesan estos temas, pensé que te gustaría conocerlos. ¡Avísame si quieres que te cuente!"</p><button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg><span class="copy-text">Copiar</span></button></div>
         </div>
       </section>
 
       <!-- Sección 5: Reglas de Oro -->
       <section id="etica" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <!-- ... (Contenido existente sin cambios) ... -->
         <div class="flex items-start gap-4">
           <div class="section-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -234,25 +216,11 @@
         </div>
         <div class="mt-6 overflow-x-auto">
             <table class="min-w-full">
-                <thead>
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qué Hacer (DOs)</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qué Evitar (DON'Ts)</th>
-                    </tr>
-                </thead>
+                <thead><tr><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qué Hacer (DOs)</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qué Evitar (DON'Ts)</th></tr></thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Habla de "bienestar", "apoyo nutricional", "ambiente más sano".</span></td>
-                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No uses palabras como "curar", "tratar", "diagnosticar" o "prevenir enfermedades".</span></td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Comparte tu historia de esfuerzo y los resultados que has obtenido.</span></td>
-                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No garantices ingresos ni muestres un estilo de vida exagerado.</span></td>
-                    </tr>
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Asocia siempre los productos a un beneficio o una solución real.</span></td>
-                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No publiques fotos de productos sin contexto o sin un testimonio personal.</span></td>
-                    </tr>
+                    <tr><td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Habla de "bienestar", "apoyo nutricional", "ambiente más sano".</span></td><td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No uses palabras como "curar", "tratar", "diagnosticar" o "prevenir enfermedades".</span></td></tr>
+                    <tr><td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Comparte tu historia de esfuerzo y los resultados que has obtenido.</span></td><td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No garantices ingresos ni muestres un estilo de vida exagerado.</span></td></tr>
+                    <tr><td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Asocia siempre los productos a un beneficio o una solución real.</span></td><td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No publiques fotos de productos sin contexto o sin un testimonio personal.</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -260,6 +228,7 @@
 
       <!-- Sección 6: Manejo de Objeciones -->
       <section id="objeciones" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <!-- ... (Contenido existente sin cambios) ... -->
         <div class="flex items-start gap-4">
           <div class="section-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
@@ -270,39 +239,94 @@
           </div>
         </div>
         <div class="mt-6 space-y-4">
-          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer">
-            <summary class="flex justify-between items-center font-semibold text-gray-800">
-              "Es que es muy caro..."
-              <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </summary>
-            <div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200">
-              <p><strong class="text-gray-700 block">Paso 1: Valida su sentir.</strong> "Te entiendo perfectamente, yo también pensé eso al principio."</p>
-              <p><strong class="text-gray-700 block">Paso 2: Re-enfoca en el valor.</strong> "Lo que descubrí es que, como son súper concentrados, el costo por uso es mucho más bajo que los del súper. Pagamos por el producto, no por el agua y el plástico."</p>
-              <p><strong class="text-gray-700 block">Paso 3: Ofrece una solución.</strong> "¿Qué te parece si comparamos lo que gastas ahora en un producto como el limpiador multiusos? Te sorprenderá el ahorro. Además, estás invirtiendo en la salud de tu hogar."</p>
+          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer"><summary class="flex justify-between items-center font-semibold text-gray-800">"Es que es muy caro..."<svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200"><p><strong class="text-gray-700 block">Paso 1: Valida su sentir.</strong> "Te entiendo perfectamente, yo también pensé eso al principio."</p><p><strong class="text-gray-700 block">Paso 2: Re-enfoca en el valor.</strong> "Lo que descubrí es que, como son súper concentrados, el costo por uso es mucho más bajo que los del súper. Pagamos por el producto, no por el agua y el plástico."</p><p><strong class="text-gray-700 block">Paso 3: Ofrece una solución.</strong> "¿Qué te parece si comparamos lo que gastas ahora en un producto como el limpiador multiusos? Te sorprenderá el ahorro. Además, estás invirtiendo en la salud de tu hogar."</p></div></details>
+          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer"><summary class="flex justify-between items-center font-semibold text-gray-800">"¿Esto es una de esas pirámides?"<svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200"><p><strong class="text-gray-700 block">Paso 1: Agradece la pregunta.</strong> "¡Qué buena pregunta! Es súper importante aclarar eso y te agradezco la confianza para hacerlo."</p><p><strong class="text-gray-700 block">Paso 2: Explica el modelo simple.</strong> "Para nada. Melaleuca es un club de compras en línea, como si fuera un Amazon o un Costco pero de bienestar. Compras directamente a la fábrica productos exclusivos y más seguros."</p><p><strong class="text-gray-700 block">Paso 3: Clarifica la compensación.</strong> "La parte del negocio es opcional y funciona por referidos. Si te encantan los productos y los recomiendas, la compañía te paga una comisión. Igual que cuando recomiendas una serie o un restaurante, pero aquí sí te pagan. No hay obligación de vender ni reclutar para ser cliente."</p></div></details>
+          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer"><summary class="flex justify-between items-center font-semibold text-gray-800">"No tengo tiempo para esto."<svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200"><p><strong class="text-gray-700 block">Paso 1: Empatiza con su realidad.</strong> "La vida es una locura, ¿verdad? Sé exactamente a lo que te refieres, el tiempo es lo que más nos falta a todos."</p><p><strong class="text-gray-700 block">Paso 2: Presenta la flexibilidad.</strong> "Justamente por eso me encantó este modelo. No hay horarios fijos ni jefes. Simplemente cambias de tienda para tus compras habituales y compartes tu experiencia cuando surge la conversación, desde tu celular."</p><p><strong class="text-gray-700 block">Paso 3: Habla del objetivo.</strong> "Mucha gente empieza precisamente porque no tiene tiempo y busca una forma de generar un ingreso extra que a la larga les pueda comprar más tiempo y libertad. Con 2-3 horas a la semana, bien enfocadas, se pueden construir cosas increíbles."</p></div></details>
+        </div>
+      </section>
+
+      <!-- Módulo 7: El Arte de la Presentación y el Cierre -->
+      <section id="cierre" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v5Z"></path><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">7. El Arte de la Presentación y el Cierre</h2>
+            <p class="mt-2 text-gray-600">Guía la conversación de forma natural hacia una decisión, sin presiones y con total confianza.</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-4">
+            <div class="bg-gray-50 p-5 rounded-xl">
+                <h3 class="font-semibold text-gray-800 mb-2">Flujo de Conversación para Presentar</h3>
+                <ol class="list-decimal list-inside text-gray-600 space-y-1">
+                    <li><strong>Conecta:</strong> Habla de sus necesidades y "puntos de dolor" primero.</li>
+                    <li><strong>Comparte tu historia:</strong> Sé breve y enfócate en tu "porqué".</li>
+                    <li><strong>Presenta la solución:</strong> "Descubrí un club de compras que resuelve justo eso..."</li>
+                    <li><strong>Muestra los beneficios clave:</strong> Ahorro, salud, ecología.</li>
+                    <li><strong>Invita a la acción:</strong> "¿Te gustaría que te muestre cómo funciona por dentro?"</li>
+                </ol>
             </div>
-          </details>
-          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer">
-            <summary class="flex justify-between items-center font-semibold text-gray-800">
-              "¿Esto es una de esas pirámides?"
-              <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-            </summary>
-            <div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200">
-              <p><strong class="text-gray-700 block">Paso 1: Agradece la pregunta.</strong> "¡Qué buena pregunta! Es súper importante aclarar eso y te agradezco la confianza para hacerlo."</p>
-              <p><strong class="text-gray-700 block">Paso 2: Explica el modelo simple.</strong> "Para nada. Melaleuca es un club de compras en línea, como si fuera un Amazon o un Costco pero de bienestar. Compras directamente a la fábrica productos exclusivos y más seguros."</p>
-              <p><strong class="text-gray-700 block">Paso 3: Clarifica la compensación.</strong> "La parte del negocio es opcional y funciona por referidos. Si te encantan los productos y los recomiendas, la compañía te paga una comisión. Igual que cuando recomiendas una serie o un restaurante, pero aquí sí te pagan. No hay obligación de vender ni reclutar para ser cliente."</p>
+            <div class="bg-gray-50 p-5 rounded-xl">
+                <h3 class="font-semibold text-gray-800 mb-2">Preguntas de Cierre Efectivas</h3>
+                <p class="text-gray-600">"De todo lo que te he contado, ¿qué fue lo que más resonó contigo?"</p>
+                <p class="mt-2 text-gray-600">"¿En una escala del 1 al 10, qué tan listo te sientes para empezar a crear un hogar más saludable?"</p>
+                <p class="mt-2 text-gray-600">"¿Ves cómo cambiar de tienda podría ayudarte a [lograr el objetivo que te mencionó]?"</p>
             </div>
-          </details>
-          <details class="group bg-gray-50 p-5 rounded-xl cursor-pointer">
-              <summary class="flex justify-between items-center font-semibold text-gray-800">
-                "No tengo tiempo para esto."
-                <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-              </summary>
-              <div class="mt-4 text-gray-600 space-y-3 pt-3 border-t border-gray-200">
-                  <p><strong class="text-gray-700 block">Paso 1: Empatiza con su realidad.</strong> "La vida es una locura, ¿verdad? Sé exactamente a lo que te refieres, el tiempo es lo que más nos falta a todos."</p>
-                  <p><strong class="text-gray-700 block">Paso 2: Presenta la flexibilidad.</strong> "Justamente por eso me encantó este modelo. No hay horarios fijos ni jefes. Simplemente cambias de tienda para tus compras habituales y compartes tu experiencia cuando surge la conversación, desde tu celular."</p>
-                  <p><strong class="text-gray-700 block">Paso 3: Habla del objetivo.</strong> "Mucha gente empieza precisamente porque no tiene tiempo y busca una forma de generar un ingreso extra que a la larga les pueda comprar más tiempo y libertad. Con 2-3 horas a la semana, bien enfocadas, se pueden construir cosas increíbles."</p>
-              </div>
-            </details>
+        </div>
+      </section>
+
+      <!-- Módulo 8: De Constructor a Líder -->
+      <section id="liderazgo" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">8. De Constructor a Líder: Duplicación</h2>
+            <p class="mt-2 text-gray-600">El verdadero éxito no es lo que tú haces, sino lo que tu equipo puede duplicar. Conviértete en el mentor que a ti te hubiera gustado tener.</p>
+          </div>
+        </div>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-semibold text-gray-800 mb-2">Enseña el Sistema</h3><p class="text-gray-600">No reinventes la rueda. Enseña a tus nuevos miembros a usar esta misma guía. La simplicidad es la clave de la duplicación.</p></div>
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-semibold text-gray-800 mb-2">Celebra los Pequeños Pasos</h3><p class="text-gray-600">Reconoce el primer cliente, la primera publicación, el primer "no". La motivación se alimenta de progreso, no solo de grandes victorias.</p></div>
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-semibold text-gray-800 mb-2">Crea una Comunidad</h3><p class="text-gray-600">Organiza llamadas de equipo semanales o un chat grupal. Un ambiente de apoyo donde se comparten dudas y éxitos es fundamental.</p></div>
+            <div class="bg-gray-50 p-5 rounded-xl"><h3 class="font-semibold text-gray-800 mb-2">Lidera con el Ejemplo</h3><p class="text-gray-600">Sigue haciendo las actividades básicas. Tu equipo hará lo que tú haces, no lo que tú dices que hagan.</p></div>
+        </div>
+      </section>
+
+      <!-- Módulo 9: Herramientas y Recursos -->
+      <section id="herramientas" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14v8"></path><path d="M12 2v2"></path><path d="M14 12h8"></path><path d="M2 12h2"></path><path d="m18 18 4 4"></path><path d="m2 6 4 4"></path><path d="m18 6-4 4"></path><path d="m2 18 4-4"></path><circle cx="12" cy="12" r="4"></circle></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">9. Herramientas y Recursos Prácticos</h2>
+            <p class="mt-2 text-gray-600">Todo lo que necesitas para gestionar tu negocio de forma eficiente y profesional.</p>
+          </div>
+        </div>
+        <div class="mt-6 grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="font-semibold text-gray-800 mb-3 text-lg">Calculadora de Ahorro</h3>
+                <div class="bg-gray-50 p-5 rounded-xl">
+                    <div class="space-y-3">
+                        <div><label for="gasto" class="block text-sm font-medium text-gray-700">Tu gasto mensual actual en limpieza:</label><input type="number" id="gasto" placeholder="$500" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm"></div>
+                        <div><label for="ahorro" class="block text-sm font-medium text-gray-700">Ahorro estimado con Melaleuca:</label><input type="text" id="ahorro" value="~ $250 (50% menos)" disabled class="mt-1 block w-full rounded-md border-gray-300 bg-gray-200 sm:text-sm"></div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-semibold text-gray-800 mb-3 text-lg">Biblioteca de Recursos</h3>
+                <div class="bg-gray-50 p-5 rounded-xl">
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-primary hover:underline">Catálogo de Productos (PDF)</a></li>
+                        <li><a href="#" class="text-primary hover:underline">Videos de Capacitación Oficiales</a></li>
+                        <li><a href="#" class="text-primary hover:underline">Fichas Técnicas de Productos</a></li>
+                        <li><a href="#" class="text-primary hover:underline">Historias de Éxito para Compartir</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
       </section>
 
@@ -311,17 +335,17 @@
     <!-- Pie de Página -->
     <footer class="mt-16 pt-8 text-center text-gray-500 text-sm border-t border-gray-200">
       <p>&copy; 2025 – Guía Definitiva de Éxito Melaleuca.</p>
-      <p class="mt-1">Creada con IA para potenciar tu crecimiento y estrategia.</p>
+      <p class="mt-1">HL Copyright.</p>
     </footer>
   </div>
 
   <script>
+    // Función para copiar texto
     function copyScript(btn) {
       const scriptContainer = btn.parentElement;
       const textToCopy = scriptContainer.querySelector('p.italic').innerText;
       const copyTextSpan = btn.querySelector('.copy-text');
 
-      // Create a temporary textarea to copy the text
       const tempTextArea = document.createElement('textarea');
       tempTextArea.value = textToCopy;
       document.body.appendChild(tempTextArea);
@@ -329,18 +353,36 @@
       document.execCommand('copy');
       document.body.removeChild(tempTextArea);
 
-      // Visual feedback
       copyTextSpan.innerText = '¡Copiado!';
       btn.classList.add('bg-green-500');
       btn.classList.remove('bg-primary');
 
-      // Revert back after a delay
       setTimeout(() => {
         copyTextSpan.innerText = 'Copiar';
         btn.classList.remove('bg-green-500');
         btn.classList.add('bg-primary');
       }, 2000);
     }
+
+    // Lógica para la checklist de arranque rápido
+    document.addEventListener('DOMContentLoaded', () => {
+        const checklist = document.getElementById('checklist');
+        const checkboxes = checklist.querySelectorAll('input[type="checkbox"]');
+        const progressBar = document.getElementById('progressBar');
+        const totalTasks = checkboxes.length;
+
+        function updateProgress() {
+            const checkedTasks = checklist.querySelectorAll('input[type="checkbox"]:checked').length;
+            const percentage = (checkedTasks / totalTasks) * 100;
+            progressBar.style.width = percentage + '%';
+        }
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateProgress);
+        });
+
+        updateProgress();
+    });
   </script>
 
 </body>
