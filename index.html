@@ -1,541 +1,293 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plan de Éxito para Melaleuca</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Serene Dawn (Background: #FDFBF6, Primary Text: #3D405B, Accent: #81B29A, Secondary Accent: #F2CC8F) -->
-    <!-- Application Structure Plan: Una aplicación de página única temática con navegación superior fija para acceder a secciones clave: Estrategia, Plan de Acción, Contenido y Conversión. Esta estructura no lineal permite a los usuarios saltar directamente a la información que más necesitan. Se utilizan elementos interactivos como gráficos y tarjetas clicables para desglosar ideas complejas (como la regla 80/20) y comparar estrategias, haciendo el plan más digerible y atractivo que un documento estático. El flujo guía al usuario desde la estrategia de alto nivel hasta los pasos específicos y accionables. -->
-    <!-- Visualization & Content Choices: 1. Enfoques Estratégicos -> Objetivo: Comparar -> Visualización: Gráfico de Barras -> Interacción: Visual estático -> Justificación: Contrasta directamente el potencial a largo plazo de diferentes estrategias. Librería: Chart.js. 2. Mezcla de Contenido -> Objetivo: Informar proporción -> Visualización: Gráfico de Anillo -> Interacción: Tarjetas clicables que revelan detalles -> Justificación: Ilustra claramente la regla de contenido 80/20. Librería: Chart.js. 3. Flujo de Conversión -> Objetivo: Organizar flujo -> Visualización: Diagrama HTML/CSS -> Interacción: Efectos hover para detalles -> Justificación: Visualiza el viaje del cliente sin usar SVG/Mermaid, utilizando HTML limpio. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FDFBF6;
-            color: #3D405B;
-        }
-        .nav-link {
-            transition: all 0.3s ease;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-link.active, .nav-link:hover {
-            color: #81B29A;
-            border-bottom-color: #81B29A;
-        }
-        .section {
-            display: none;
-        }
-        .section.active {
-            display: block;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        .card-flip {
-            perspective: 1000px;
-        }
-        .card-flip-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
-        .card-flip:hover .card-flip-inner {
-            transform: rotateY(180deg);
-        }
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 0.5rem;
-        }
-        .card-back {
-            transform: rotateY(180deg);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía Definitiva de Éxito Melaleuca</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #006d77; /* Un verde azulado más profundo */
+      --secondary: #264653;
+      --accent: #e9c46a;
+      --light: #f8f9fa; /* Un fondo ligeramente más cálido */
+      --dark: #1f2937; /* Gris oscuro para texto */
+    }
+    body {
+      font-family: 'Lexend', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      scroll-behavior: smooth;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+    .gradient-text {
+      background: linear-gradient(45deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .step-indicator {
+        background-color: var(--primary);
+        color: white;
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    .section-icon {
+        background: linear-gradient(135deg, var(--primary), #83c5be);
+        padding: 0.75rem;
+        border-radius: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+  </style>
 </head>
 <body class="antialiased">
 
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <h1 class="text-xl font-bold text-[#3D405B]">Plan de Éxito</h1>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#estrategia" class="nav-link px-3 py-2 rounded-md text-sm font-semibold">Estrategia Central</a>
-                        <a href="#plan" class="nav-link px-3 py-2 rounded-md text-sm font-semibold">Plan de Acción</a>
-                        <a href="#contenido" class="nav-link px-3 py-2 rounded-md text-sm font-semibold">Contenido</a>
-                        <a href="#conversion" class="nav-link px-3 py-2 rounded-md text-sm font-semibold">Conversión</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <select id="mobile-nav" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-[#81B29A] focus:border-[#81B29A] sm:text-sm rounded-md">
-                        <option value="estrategia">Estrategia Central</option>
-                        <option value="plan">Plan de Acción</option>
-                        <option value="contenido">Contenido</option>
-                        <option value="conversion">Conversión</option>
-                    </select>
-                </div>
-            </div>
-        </nav>
+  <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- Encabezado Principal -->
+    <header class="text-center py-12">
+        <div class="inline-block bg-emerald-100 text-emerald-800 text-sm font-semibold px-4 py-1 rounded-full mb-4">
+            TU CAMINO AL BIENESTAR
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 tracking-tight leading-tight">
+            Guía Definitiva de Éxito<br class="hidden sm:block">
+            <span class="gradient-text">con Melaleuca</span>
+        </h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+            Transforma tu pasión por el bienestar en un negocio próspero. Aquí tienes el mapa.
+        </p>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-        
-        <section id="estrategia" class="section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">El Dilema Estratégico</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">¿En qué enfocarse para un éxito sostenible? Analizamos tres enfoques y sus resultados a largo plazo.</p>
+    <!-- Contenido Principal -->
+    <main class="space-y-10 md:space-y-16">
+
+      <!-- Sección 1: La Filosofía -->
+      <section id="filosofia" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path><path d="M12 12v6"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">1. La Filosofía: Conectar, no Vender</h2>
+            <p class="mt-2 text-gray-600">Tu misión es compartir un estilo de vida. Olvida la venta tradicional y enfócate en ser una fuente de valor y autenticidad.</p>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-5 rounded-xl">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">Enfócate en Beneficios</h3>
+                <p class="text-gray-600">Nadie compra un producto, compra una transformación. Habla de mañanas con más energía, de la tranquilidad de un hogar sin tóxicos, de una piel radiante.</p>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8 mb-12 text-center">
-                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-400">
-                    <h3 class="text-xl font-semibold mb-2">Enfoque: "El Negocio"</h3>
-                    <p class="text-gray-600">Promoción directa de la oportunidad de ingresos. Atrae a quienes buscan dinero rápido pero genera alta desconfianza y abandono.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-400">
-                    <h3 class="text-xl font-semibold mb-2">Enfoque: "Los Productos"</h3>
-                    <p class="text-gray-600">Se centra en los beneficios y la calidad. Construye una base de clientes leales y genera credibilidad y confianza.</p>
-                </div>
-                <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-green-400">
-                    <h3 class="text-xl font-semibold mb-2">Enfoque: "El Estilo de Vida"</h3>
-                    <p class="text-gray-600">Muestra los resultados aspiracionales de usar los productos (hogar saludable, bienestar). Atrae a una audiencia por conexión emocional.</p>
-                </div>
+            <div class="bg-gray-50 p-5 rounded-xl">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">La Regla 80/20</h3>
+                <p class="text-gray-600">80% de tu contenido debe educar, inspirar y entretener. El 20% restante puede ser una invitación sutil a conocer más sobre tus soluciones.</p>
             </div>
-
-            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-bold text-center mb-4">Comparativa de Potencial a Largo Plazo</h3>
-                <p class="text-center text-gray-600 mb-6">Esta gráfica compara la sostenibilidad y el potencial de ingresos de cada estrategia. La combinación de Estilo de Vida y Productos es la fórmula ganadora para un negocio estable y rentable.</p>
-                <div class="chart-container">
-                    <canvas id="strategyChart"></canvas>
-                </div>
+            <div class="bg-gray-50 p-5 rounded-xl">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">Autenticidad Radical</h3>
+                <p class="text-gray-600">La gente confía en personas, no en logos. Comparte tus experiencias reales, tus dudas y tus éxitos. La perfección no conecta, la humanidad sí.</p>
             </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="plan" class="section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">Plan de Acción por Fases</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Una guía paso a paso para construir tu negocio desde los cimientos hasta la conversión.</p>
-            </div>
-
-            <div class="space-y-8">
-                <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-3"><span class="text-[#81B29A]">Fase 1:</span> Cimientos de tu Marca Personal</h3>
-                    <p class="mb-4 text-gray-600">Antes de publicar, define quién eres y a quién ayudas. La autenticidad es tu mayor activo.</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li><b>Define tu Nicho Específico:</b> ¿Eres la mamá eco-amigable, el fanático del fitness, el experto en organización? Elige uno que te apasione.</li>
-                        <li><b>Optimiza tus Perfiles Sociales:</b> Usa una foto de perfil clara, una biografía que describa a quién ayudas y un llamado a la acción sutil.</li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-3"><span class="text-[#81B29A]">Fase 2:</span> Estrategia de Contenido</h3>
-                    <p class="text-gray-600">Sigue la regla de oro 80/20: aporta valor la mayor parte del tiempo para ganarte el derecho a promocionar.</p>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-3"><span class="text-[#81B29A]">Fase 3:</span> Plataformas y Formatos</h3>
-                    <p class="mb-4 text-gray-600">Adapta tu contenido a cada plataforma para maximizar el alcance y la interacción.</p>
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="border p-4 rounded-md">
-                            <h4 class="font-bold">Instagram / Facebook</h4>
-                            <p class="text-sm text-gray-600">Usa Reels para demos rápidas y hacks. Las Stories son para el día a día, encuestas y preguntas.</p>
-                        </div>
-                        <div class="border p-4 rounded-md">
-                            <h4 class="font-bold">TikTok</h4>
-                            <p class="text-sm text-gray-600">Videos cortos, rápidos y con audios en tendencia. Los videos de limpieza satisfactoria son un éxito.</p>
-                        </div>
-                         <div class="border p-4 rounded-md">
-                            <h4 class="font-bold">Pinterest</h4>
-                            <p class="text-sm text-gray-600">Crea pines visuales atractivos sobre temas como "Hogar Eco-Friendly" o "Snacks Saludables".</p>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="bg-white p-6 rounded-lg shadow-md transition-all hover:shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-3"><span class="text-[#81B29A]">Fase 4:</span> Conversión y Crecimiento</h3>
-                    <p class="text-gray-600">El objetivo es iniciar conversaciones, no solo publicar. Aquí es donde el negocio realmente crece.</p>
+      <!-- Sección 2: El Respaldo Científico -->
+      <section id="ciencia" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M12 18h.01"></path><path d="M10 14c.34.96.34 2.04 0 3"></path><path d="M14 14c-.34.96-.34 2.04 0 3"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">2. El Respaldo: Naturaleza y Ciencia</h2>
+            <p class="mt-2 text-gray-600">No necesitas un doctorado. Domina estos tres pilares para comunicar con confianza y credibilidad.</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-4">
+            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                <div class="step-indicator">1</div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">Aceite de Melaleuca T36-C5®</h4>
+                    <p class="text-gray-600">Es el corazón de la marca. Un antiséptico y solvente natural con más de 95 años de uso documentado. Es el "ingrediente secreto" que garantiza la eficacia y la seguridad.</p>
                 </div>
             </div>
-        </section>
-
-        <section id="contenido" class="section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">La Estrategia de Contenido 80/20</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Tu contenido debe ser 80% valor y 20% promoción sutil. Esta mezcla construye confianza y genera curiosidad sin abrumar a tu audiencia.</p>
-            </div>
-            
-            <div class="grid lg:grid-cols-5 gap-8 items-center">
-                <div class="lg:col-span-2">
-                    <div class="chart-container h-64 md:h-80">
-                         <canvas id="contentChart"></canvas>
-                    </div>
-                </div>
-                <div class="lg:col-span-3 space-y-6">
-                    <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#81B29A]">
-                        <h3 class="text-xl font-bold mb-2">El 80%: Contenido de Valor (Atraer)</h3>
-                        <p class="text-gray-600">Resuelve problemas, educa y entretiene a tu nicho. Rara vez mencionas la marca por su nombre.</p>
-                        <ul class="mt-3 list-disc list-inside text-sm text-gray-500">
-                            <li><b>Educativo:</b> "5 ingredientes a evitar en tus limpiadores".</li>
-                            <li><b>Inspiracional:</b> Videos "Antes y Después" de un espacio de tu hogar.</li>
-                            <li><b>Demostraciones:</b> Muestra un problema (una mancha) y la solución (el producto en acción, sin mostrar la marca).</li>
-                        </ul>
-                    </div>
-                     <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-[#F2CC8F]">
-                        <h3 class="text-xl font-bold mb-2">El 20%: Contenido de Curiosidad (Convertir)</h3>
-                        <p class="text-gray-600">Conecta el estilo de vida con los productos, generando intriga para iniciar conversaciones.</p>
-                        <ul class="mt-3 list-disc list-inside text-sm text-gray-500">
-                            <li><b>Marketing de Curiosidad:</b> Muestra el producto sin revelar la marca. Deja que pregunten.</li>
-                            <li><b>Historias Personales:</b> Comparte tu testimonio sobre un problema que resolviste.</li>
-                            <li><b>Invitación a la Conversación:</b> "Envía DM con la palabra 'INFO' para saber más".</li>
-                        </ul>
-                    </div>
+            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                <div class="step-indicator">2</div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">Fórmulas Súper Concentradas</h4>
+                    <p class="text-gray-600">Menos agua, menos plástico, menos contaminación. Esto no es solo un beneficio ecológico, es un ahorro inteligente para el bolsillo del cliente. ¡Comunícalo!</p>
                 </div>
             </div>
-
-            <div class="mt-12 p-8 bg-white rounded-lg shadow-lg">
-                <h3 class="text-2xl font-bold text-center mb-6 text-[#3D405B]">Potenciado por IA: Genera Ideas de Contenido ✨</h3>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">Generador de Ideas</h4>
-                        <p class="text-gray-600 mb-4">Escribe tu nicho (ej. "mamá que ama limpiar") para recibir ideas de contenido y videos.</p>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input id="niche-input" type="text" placeholder="Mi nicho es..." class="flex-grow p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#81B29A]">
-                            <button id="generate-ideas-btn" class="bg-[#81B29A] text-white font-bold py-2 px-4 rounded-md transition-colors hover:bg-[#75A18A] flex-shrink-0">
-                                Generar Ideas ✨
-                            </button>
-                        </div>
-                        <div id="ideas-output" class="mt-4 p-4 min-h-[100px] bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-gray-400">Las ideas generadas aparecerán aquí.</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">Redactor de Curiosidad</h4>
-                        <p class="text-gray-600 mb-4">Describe un producto o beneficio (ej. "limpiador multiusos para el hogar") para un mensaje de curiosidad.</p>
-                        <div class="flex flex-col sm:flex-row gap-2">
-                            <input id="product-input" type="text" placeholder="Producto o beneficio..." class="flex-grow p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#81B29A]">
-                            <button id="generate-message-btn" class="bg-[#81B29A] text-white font-bold py-2 px-4 rounded-md transition-colors hover:bg-[#75A18A] flex-shrink-0">
-                                Redactar Mensaje ✨
-                            </button>
-                        </div>
-                         <div id="message-output" class="mt-4 p-4 min-h-[100px] bg-gray-50 rounded-lg border border-gray-200">
-                            <p class="text-gray-400">El mensaje de curiosidad aparecerá aquí.</p>
-                        </div>
-                    </div>
+            <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                <div class="step-indicator">3</div>
+                <div>
+                    <h4 class="font-semibold text-gray-800">Libre de Químicos Nocivos</h4>
+                    <p class="text-gray-600">El compromiso es claro: eliminar ingredientes como cloro, amoníaco y formaldehído. Promueve un santuario seguro en cada hogar, protegiendo a familias y mascotas.</p>
                 </div>
             </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="conversion" class="section">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold tracking-tight">De la Curiosidad a la Conversión</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">El proceso para convertir a un seguidor interesado en un cliente feliz o un socio de negocio.</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
-                <div class="w-full md:w-1/4 p-4 text-center">
-                    <div class="bg-white p-6 rounded-full shadow-lg aspect-square flex flex-col justify-center transition-transform hover:scale-105">
-                        <span class="text-3xl">📱</span>
-                        <h3 class="font-bold mt-2">Paso 1: Interés Público</h3>
-                        <p class="text-sm text-gray-500">Un comentario o 'like' en tu post de "curiosidad".</p>
-                    </div>
-                </div>
+      <!-- Sección 3: Plan de Acción en Redes Sociales -->
+      <section id="redes" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">3. Tu Plan de Acción en Redes Sociales</h2>
+            <p class="mt-2 text-gray-600">Construye una comunidad leal y atrae clientes de forma orgánica con una estrategia de contenido inteligente.</p>
+          </div>
+        </div>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 1: Perfil Magnético</h3>
+            <p class="text-gray-700">Tu biografía debe responder tres preguntas: ¿Quién eres? ¿A quién ayudas? ¿Cómo lo haces? Usa un lenguaje claro y añade un llamado a la acción (ej: "DM para una asesoría de hogar saludable").</p>
+          </div>
+          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 2: Contenido Que Atrae</h3>
+            <p class="text-gray-700">Crea Reels mostrando transformaciones ("antes y después"), tutoriales rápidos ("cómo diluir Sol-U-Mel"), y comparte tu rutina diaria integrando los productos de forma natural.</p>
+          </div>
+          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 3: Calendario de Contenido</h3>
+            <ul class="list-disc ml-5 space-y-1 text-gray-700">
+              <li><strong>Lunes de Mitos:</strong> Desmiente un mito sobre limpieza o bienestar.</li>
+              <li><strong>Miércoles de Tutorial:</strong> Enseña a usar un producto de forma creativa.</li>
+              <li><strong>Viernes de Testimonio:</strong> Comparte tu historia o la de un cliente (con permiso).</li>
+            </ul>
+          </div>
+          <div class="p-6 bg-emerald-50 rounded-xl border border-emerald-200">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">Paso 4: El Arte de la Conversación</h3>
+            <p class="text-gray-700">El DM es para construir relaciones. Responde a historias, haz preguntas genuinas y escucha. La venta ocurre cuando la confianza ya está establecida.</p>
+          </div>
+        </div>
+      </section>
 
-                <div class="text-2xl text-[#81B29A] hidden md:block">→</div>
-                 <div class="text-2xl text-[#81B29A] rotate-90 md:hidden">↓</div>
+      <!-- Sección 4: Scripts y Mensajes -->
+      <section id="scripts" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">4. Mensajes Que Conectan</h2>
+            <p class="mt-2 text-gray-600">Usa estas plantillas como inspiración. Adáptalas siempre a tu voz y al contexto de la conversación.</p>
+          </div>
+        </div>
+        <div class="mt-6 space-y-6">
+          
+          <div class="bg-gray-100 p-5 rounded-xl">
+            <p class="font-semibold text-gray-800 mb-2">Para responder a quien reacciona a una historia:</p>
+            <p class="text-gray-700 italic">"¡Hola [Nombre]! Qué bueno que te interesó mi historia. La verdad es que estoy feliz desde que saqué los limpiadores tóxicos de casa. Si te da curiosidad saber más, ¡me encantaría contarte sin ningún compromiso! 😊"</p>
+            <button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-text">Copiar</span>
+            </button>
+          </div>
 
-                <div class="w-full md:w-1/4 p-4 text-center">
-                     <div class="bg-white p-6 rounded-full shadow-lg aspect-square flex flex-col justify-center transition-transform hover:scale-105">
-                        <span class="text-3xl">💬</span>
-                        <h3 class="font-bold mt-2">Paso 2: Conversación Privada</h3>
-                        <p class="text-sm text-gray-500">Mueves la conversación a Mensaje Directo (DM).</p>
-                    </div>
-                </div>
+          <div class="bg-gray-100 p-5 rounded-xl">
+            <p class="font-semibold text-gray-800 mb-2">Para una publicación en redes sociales:</p>
+            <p class="text-gray-700 italic">"Mi momento favorito del día: cuando la casa huele a limpio, no a químicos. Pequeños cambios, gran impacto en el bienestar de mi familia. ✨ #HogarConsciente #BienestarReal #Melaleuca"</p>
+            <button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-text">Copiar</span>
+            </button>
+          </div>
 
-                 <div class="text-2xl text-[#81B29A] hidden md:block">→</div>
-                 <div class="text-2xl text-[#81B29A] rotate-90 md:hidden">↓</div>
+          <div class="bg-gray-100 p-5 rounded-xl">
+            <p class="font-semibold text-gray-800 mb-2">Para contactar a un amigo de forma casual:</p>
+            <p class="text-gray-700 italic">"Oye [Nombre], me acordé de ti el otro día. Empecé a usar unos productos ecológicos para la casa que son una maravilla (y súper ahorradores). Como sé que te interesan estos temas, pensé que te gustaría conocerlos. ¡Avísame si quieres que te cuente!"</p>
+            <button class="mt-4 flex items-center gap-2 px-4 py-2 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-all duration-200 text-sm" onclick="copyScript(this)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span class="copy-text">Copiar</span>
+            </button>
+          </div>
 
-                <div class="w-full md:w-1/4 p-4 text-center">
-                    <div class="bg-white p-6 rounded-full shadow-lg aspect-square flex flex-col justify-center transition-transform hover:scale-105">
-                        <span class="text-3xl">🛍️</span>
-                        <h3 class="font-bold mt-2">Paso 3: Presentar la Tienda</h3>
-                        <p class="text-sm text-gray-500">Explicas el concepto de "cambiar de tienda" y sus beneficios.</p>
-                    </div>
-                </div>
+        </div>
+      </section>
 
-                <div class="text-2xl text-[#81B29A] hidden md:block">→</div>
-                 <div class="text-2xl text-[#81B29A] rotate-90 md:hidden">↓</div>
-
-                <div class="w-full md:w-1/4 p-4 text-center">
-                     <div class="bg-white p-6 rounded-full shadow-lg aspect-square flex flex-col justify-center transition-transform hover:scale-105">
-                        <span class="text-3xl">🤝</span>
-                        <h3 class="font-bold mt-2">Paso 4: Nuevo Cliente/Socio</h3>
-                        <p class="text-sm text-gray-500">Se inscribe como cliente y, potencialmente, se convierte en socio.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Sección 5: Reglas de Oro -->
+      <section id="etica" class="bg-white p-6 md:p-8 rounded-2xl card-shadow">
+        <div class="flex items-start gap-4">
+          <div class="section-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">5. Cumplimiento y Ética: Tu Activo Más Valioso</h2>
+            <p class="mt-2 text-gray-600">Un negocio sostenible se construye sobre la confianza. Protege tu reputación y la de la marca siguiendo estas reglas de oro.</p>
+          </div>
+        </div>
+        <div class="mt-6 overflow-x-auto">
+            <table class="min-w-full">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qué Hacer (DOs)</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qué Evitar (DON'Ts)</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Habla de "bienestar", "apoyo nutricional", "ambiente más sano".</span></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No uses palabras como "curar", "tratar", "diagnosticar" o "prevenir enfermedades".</span></td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Comparte tu historia de esfuerzo y los resultados que has obtenido.</span></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No garantices ingresos ni muestres un estilo de vida exagerado.</span></td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-green-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Asocia siempre los productos a un beneficio o una solución real.</span></td>
+                        <td class="px-6 py-4 whitespace-nowrap"><span class="flex items-center gap-2 text-red-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>No publiques fotos de productos sin contexto o sin un testimonio personal.</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </section>
 
     </main>
 
-    <footer class="bg-white mt-12">
-        <div class="container mx-auto px-8 py-4 text-center text-gray-500">
-            <p>&copy; 2025 Guía Estratégica. Construye tu negocio con un plan sólido y sostenible.</p>
-        </div>
+    <!-- Pie de Página -->
+    <footer class="mt-16 pt-8 text-center text-gray-500 text-sm border-t border-gray-200">
+      <p>&copy; 2025 – Guía Definitiva de Éxito Melaleuca.</p>
+      <p class="mt-1">HL 2025</p>
     </footer>
+  </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const mobileNav = document.getElementById('mobile-nav');
-            const generateIdeasBtn = document.getElementById('generate-ideas-btn');
-            const generateMessageBtn = document.getElementById('generate-message-btn');
-            const nicheInput = document.getElementById('niche-input');
-            const productInput = document.getElementById('product-input');
-            const ideasOutput = document.getElementById('ideas-output');
-            const messageOutput = document.getElementById('message-output');
+  <script>
+    function copyScript(btn) {
+      const scriptContainer = btn.parentElement;
+      const textToCopy = scriptContainer.querySelector('p.italic').innerText;
+      const copyTextSpan = btn.querySelector('.copy-text');
 
-            function setActiveSection(hash) {
-                const targetHash = hash ? hash.substring(1) : 'estrategia';
-                
-                sections.forEach(section => {
-                    if (section.id === targetHash) {
-                        section.classList.add('active');
-                    } else {
-                        section.classList.remove('active');
-                    }
-                });
+      // Create a temporary textarea to copy the text
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = textToCopy;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempTextArea);
 
-                navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${targetHash}`) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-                
-                mobileNav.value = targetHash;
-                
-                if (targetHash === 'estrategia') renderStrategyChart();
-                if (targetHash === 'contenido') renderContentChart();
-            }
+      // Visual feedback
+      copyTextSpan.innerText = '¡Copiado!';
+      btn.classList.add('bg-green-500');
+      btn.classList.remove('bg-primary');
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetHash = this.getAttribute('href');
-                    setActiveSection(targetHash);
-                    history.pushState(null, null, targetHash);
-                });
-            });
-
-            mobileNav.addEventListener('change', function() {
-                const targetHash = `#${this.value}`;
-                setActiveSection(targetHash);
-                history.pushState(null, null, targetHash);
-            });
-
-            window.addEventListener('popstate', function () {
-                setActiveSection(window.location.hash);
-            });
-
-            setActiveSection(window.location.hash || '#estrategia');
-
-            var strategyChartInstance = null;
-            function renderStrategyChart() {
-                const ctx = document.getElementById('strategyChart');
-                if (!ctx) return;
-                if (strategyChartInstance) {
-                   strategyChartInstance.destroy();
-                }
-                strategyChartInstance = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Solo Negocio', 'Solo Productos', 'Lifestyle + Productos'],
-                        datasets: [
-                            {
-                                label: 'Sostenibilidad a Largo Plazo',
-                                data: [20, 75, 95],
-                                backgroundColor: '#F2CC8F',
-                                borderColor: '#E0B87F',
-                                borderWidth: 1
-                            },
-                            {
-                                label: 'Potencial de Ingresos',
-                                data: [30, 65, 90],
-                                backgroundColor: '#81B29A',
-                                borderColor: '#75A18A',
-                                borderWidth: 1
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                max: 100,
-                                ticks: {
-                                    callback: function(value) {
-                                        return value + '%'
-                                    }
-                                }
-                            }
-                        },
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return `${context.dataset.label}: ${context.raw}%`;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            var contentChartInstance = null;
-            function renderContentChart() {
-                const ctx = document.getElementById('contentChart');
-                if (!ctx) return;
-                if (contentChartInstance) {
-                   contentChartInstance.destroy();
-                }
-                contentChartInstance = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ['80% Contenido de Valor', '20% Contenido de Curiosidad'],
-                        datasets: [{
-                            data: [80, 20],
-                            backgroundColor: ['#81B29A', '#F2CC8F'],
-                            hoverOffset: 4
-                        }]
-                    },
-                     options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return `${context.label}: ${context.raw}%`;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-
-            const apiKey = "";
-            const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=" + apiKey;
-
-            async function generateIdeas() {
-                const niche = nicheInput.value.trim();
-                if (!niche) {
-                    ideasOutput.innerHTML = `<p class="text-red-500">Por favor, introduce un nicho.</p>`;
-                    return;
-                }
-
-                ideasOutput.innerHTML = `<p class="text-gray-400">Generando ideas...</p>`;
-
-                const systemPrompt = `Actúa como un experto en marketing de contenido para redes sociales. Tu objetivo es generar ideas de contenido valioso y de "curiosidad" que sigan la regla 80/20 para un negocio de productos de bienestar. El estilo de vida debe ser el enfoque principal para atraer a la audiencia. Proporciona 5 ideas de contenido de valor (80%) y 2 ideas de contenido de curiosidad (20%). Formatea la respuesta como una lista clara y concisa.`;
-                const userQuery = `Mi nicho es: ${niche}. Genera ideas de contenido para este nicho.`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: userQuery }] }],
-                            systemInstruction: {
-                                parts: [{ text: systemPrompt }]
-                            }
-                        })
-                    });
-
-                    const result = await response.json();
-                    const text = result.candidates[0].content.parts[0].text;
-                    const formattedText = text.replace(/\n/g, '<br>');
-                    ideasOutput.innerHTML = `<p class="text-gray-700">${formattedText}</p>`;
-                } catch (error) {
-                    ideasOutput.innerHTML = `<p class="text-red-500">Error al generar las ideas. Por favor, inténtalo de nuevo.</p>`;
-                    console.error("Error al llamar a la API de Gemini:", error);
-                }
-            }
-
-            async function generateMessage() {
-                const product = productInput.value.trim();
-                if (!product) {
-                    messageOutput.innerHTML = `<p class="text-red-500">Por favor, describe un producto o beneficio.</p>`;
-                    return;
-                }
-
-                messageOutput.innerHTML = `<p class="text-gray-400">Redactando mensaje...</p>`;
-
-                const systemPrompt = `Actúa como un experto en "marketing de curiosidad". Tu objetivo es redactar un mensaje corto y intrigante para redes sociales que despierte el interés sin revelar el nombre del producto o la marca. Debe sonar personal y auténtico, enfocado en el beneficio que resuelve un problema.`;
-                const userQuery = `Redacta un mensaje de curiosidad para un producto o beneficio relacionado con: ${product}.`;
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: userQuery }] }],
-                            systemInstruction: {
-                                parts: [{ text: systemPrompt }]
-                            }
-                        })
-                    });
-
-                    const result = await response.json();
-                    const text = result.candidates[0].content.parts[0].text;
-                    const formattedText = text.replace(/\n/g, '<br>');
-                    messageOutput.innerHTML = `<p class="text-gray-700">${formattedText}</p>`;
-                } catch (error) {
-                    messageOutput.innerHTML = `<p class="text-red-500">Error al generar el mensaje. Por favor, inténtalo de nuevo.</p>`;
-                    console.error("Error al llamar a la API de Gemini:", error);
-                }
-            }
-
-            generateIdeasBtn.addEventListener('click', generateIdeas);
-            generateMessageBtn.addEventListener('click', generateMessage);
-        });
-    </script>
+      // Revert back after a delay
+      setTimeout(() => {
+        copyTextSpan.innerText = 'Copiar';
+        btn.classList.remove('bg-green-500');
+        btn.classList.add('bg-primary');
+      }, 2000);
+    }
+  </script>
 
 </body>
 </html>
